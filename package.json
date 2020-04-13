@@ -1,6 +1,6 @@
 {
-  "name": "TODO",
-  "description": "TODO",
+  "name": "sched_sapper",
+  "description": "Sapper UI for sched backend",
   "version": "0.0.1",
   "scripts": {
     "dev": "sapper dev",
