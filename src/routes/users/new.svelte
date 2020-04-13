@@ -6,6 +6,7 @@
   let validationErrors = {};
 
   const onSubmit = (payload) => {
+    validationErrors = {};
     const req = payload.detail
     fetch('http://localhost:8080/users/', {
       method: 'POST',

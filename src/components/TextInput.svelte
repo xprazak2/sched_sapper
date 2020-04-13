@@ -4,10 +4,10 @@
   export let error;
   export let value;
   export let isInvalid;
-
-  let touched = false;
+  export let touched;
 
   $: isInvalid = error && !touched;
+
 </script>
 
 <style>
