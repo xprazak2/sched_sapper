@@ -4,6 +4,7 @@
 
 <script context="module">
   export function preload({ params, query }) {
+    // error handling!
     return this.fetch('http://localhost:8080/users/').then(res => res.json()).then(json => ({ users: json.users }));
   }
 </script>
@@ -32,7 +33,7 @@
   <tbody>
     {#each users as user (user.id) }
     <tr>
-      <td>{fullName(user)}</td>
+      <td><a rel="prefetch" href="users/{user.id}">{fullName(user)}</a></td>
       <td>{user.email}</td>
       <td>Delete</td>
     </tr>

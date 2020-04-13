@@ -16,6 +16,9 @@
   let surnameTouched = false;
   let emailTouched = false;
 
+  let formInvalid;
+  let formTouched;
+
   $: {
     formInvalid = nameInvalid || surnameInvalid || emailInvalid;
     formTouched = nameTouched || surnameTouched || emailTouched;
