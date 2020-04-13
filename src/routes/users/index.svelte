@@ -4,7 +4,7 @@
 
 <script context="module">
   export function preload({ params, query }) {
-    return this.fetch('http://localhost:8080/users').then(res => res.json()).then(json => ({ users: json.users }));
+    return this.fetch('http://localhost:8080/users/').then(res => res.json()).then(json => ({ users: json.users }));
   }
 </script>
 
@@ -15,21 +15,29 @@
 
 </script>
 
-<table>
+<div class="row">
+  <div class="col-2 offset-10">
+    <a class="btn" href="users/new">New User</a>
+  </div>
+</div>
+<div class="row">
+  <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Surname</th>
+      <th>Full Name</th>
       <th>Email</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     {#each users as user (user.id) }
     <tr>
-      <td>{user.name}</td>
-      <td>{user.surname}</td>
+      <td>{fullName(user)}</td>
       <td>{user.email}</td>
+      <td>Delete</td>
     </tr>
     {/each}
   </tbody>
 </table>
+
+</div>
