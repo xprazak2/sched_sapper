@@ -2,18 +2,14 @@
   import { goto } from '@sapper/app';
   import UserForm from '../../components/UserForm.svelte';
   import toastsStore from '../../stores/ToastsStore';
+  import { postUser } from '../../requests/users';
 
   let validationErrors = {};
 
   const onSubmit = (payload) => {
     validationErrors = {};
-    const req = payload.detail
-    fetch('http://localhost:8080/users/', {
-      method: 'POST',
-      body: JSON.stringify(req),
-    }).then(res => {
-      return res.json().then(data => ({ data, status: res.status, ok: res.ok, statusText: res.statusText }));
-    })
+    const req = payload.detail;
+    postUser(fetch, req)
       .then((trans) => {
         if (trans.ok) {
           toastsStore.setToast({ show: true, toastText: 'User successfully created!' });

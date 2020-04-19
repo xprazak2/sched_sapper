@@ -1,7 +1,7 @@
 <script context="module">
   export async function preload({ params }) {
     // error handling
-    return await this.fetch(`http://localhost:8080/users/${params.id}`).then(res => res.json());
+    return await getUser(this.fetch, params.id);
   }
 </script>
 
@@ -11,6 +11,7 @@
 
 <script>
   export let user;
+  import { getUser } from '../../requests/users';
 </script>
 
 <div class="row">

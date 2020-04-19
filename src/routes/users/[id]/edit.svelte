@@ -15,18 +15,14 @@
   import { fullName } from '../../../helpers/userHelpers';
   import UserForm from '../../../components/UserForm.svelte';
   import toastsStore from '../../../stores/ToastsStore';
+  import { putUser } from '../../../requests/users';
 
   let validationErrors = {};
 
   const onSubmit = (payload) => {
     validationErrors = {};
     const req = payload.detail
-    fetch(`http://localhost:8080/users/${user.id}`, {
-      method: 'PUT',
-      body: JSON.stringify(req),
-    }).then(res => {
-      return res.json().then(data => ({ data, status: res.status, ok: res.ok, statusText: res.statusText }));
-    })
+    putUser(fetch, req, req.user.id)
       .then((trans) => {
         if (trans.ok) {
           toastsStore.setToast({ show: true, toastText: 'User successfully updated!' });

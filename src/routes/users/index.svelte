@@ -5,7 +5,7 @@
 <script context="module">
   export function preload({ params, query }) {
     // error handling!
-    return this.fetch('http://localhost:8080/users/').then(res => res.json()).then(json => ({ users: json.users }));
+    return getUsers(this.fetch);
   }
 </script>
 
@@ -23,6 +23,9 @@
   import Modal from '../../components/Modal';
   import { fullName } from '../../helpers/userHelpers';
 
+  import { simpleFetch } from '../../requests';
+  import { getUsers, deleteUser } from '../../requests/users';
+
   export let users = [];
 
   let userToDelete = {};
@@ -30,12 +33,8 @@
   let deleteUserEvent = 'submitDeleteUser';
 
   const submitDelete = () => {
-    fetch(`http://localhost:8080/users/${userToDelete.id}`, {
-      method: 'DELETE'
-    }).then(res => {
-      return res.json().then(data => ({ data, status: res.status, ok: res.ok, statusText: res.statusText }));
-    }).then((trans) => {
-        console.log(trans)
+    deleteUser(fetch, userToDelete.id)
+      .then((trans) => {
         if (trans.ok) {
           toastsStore.setToast({ show: true, toastText: 'User successfully deleted, happy now?' });
           users = users.filter(user => user.id !== userToDelete.id)
