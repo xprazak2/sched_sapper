@@ -4,9 +4,11 @@
 
   export let errors;
 
-  let name = '';
-  let surname = '';
-  let email = '';
+  export let user = {
+    name: '',
+    surname: '',
+    email: '',
+  };
 
   let nameInvalid = false;
   let surnameInvalid = false;
@@ -27,7 +29,7 @@
   const dispatch = createEventDispatcher();
 
   const submitForm = () => {
-    dispatch('userFormSubmitted', { user: { name, surname, email } });
+    dispatch('userFormSubmitted', { user });
     nameTouched = false;
     surnameTouched = false;
     emailTouched = false;
@@ -40,7 +42,7 @@
       <TextInput
         labelText="Name"
         labelFor="name"
-        bind:value={name}
+        bind:value={user.name}
         error={errors.name}
         bind:isInvalid={nameInvalid}
         bind:touched={nameTouched}
@@ -48,14 +50,14 @@
       <TextInput
         labelText="Surname"
         labelFor="surname"
-        bind:value={surname}
+        bind:value={user.surname}
         error={errors.surname}
         bind:isInvalid={surnameInvalid}
         bind:touched={surnameTouched} />
       <TextInput
         labelText="Email"
         labelFor="email"
-        bind:value={email}
+        bind:value={user.email}
         error={errors.email}
         bind:isInvalid={emailInvalid}
         bind:touched={emailTouched}

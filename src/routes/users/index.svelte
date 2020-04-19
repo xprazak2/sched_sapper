@@ -21,10 +21,9 @@
   import { goto } from '@sapper/app';
   import toastsStore from '../../stores/ToastsStore';
   import Modal from '../../components/Modal';
+  import { fullName } from '../../helpers/userHelpers';
 
   export let users = [];
-
-  const fullName = (user) => `${user.name} ${user.surname}`;
 
   let userToDelete = {};
   let showDeleteModal = false;

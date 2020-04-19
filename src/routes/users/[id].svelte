@@ -14,6 +14,12 @@
 </script>
 
 <div class="row">
+  <div class="col-2 offset-10">
+    <a class="btn" href={`users/${user.id}/edit`}>Edit</a>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-2">Name:</div>
   <div class="col-10">{user.name}</div>
 </div>
